@@ -2,13 +2,38 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>AGUASEGURO™ — Protección para el Agua del Hogar</title>
 <meta name="description" content="AguaSeguro™ elimina bacterias, virus y biofilm en tu tinaco y tuberías. Tecnología microreactor FuturaBio. NSF Certificado. Made in USA.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* Chrome Android overflow fix */
+html, body { 
+  overflow-x: hidden !important; 
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.hero, .trust, .sec, .cta-final, footer, nav {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.hero-right {
+  overflow: hidden;
+  max-width: 100%;
+}
+.hero-img-wrap {
+  max-width: 100%;
+  overflow: hidden;
+}
+</style>
 </head>
 <body>
 
@@ -242,7 +267,7 @@
   <p class="sub">El cloro convencional no puede destruir el biofilm que crece en las paredes de tu tinaco. AguaSeguro™ sí puede, sin dejar rastro.</p>
   <div class="vs-layout">
     <div>
-      <table class="vs-table">
+      <div class="vs-table-wrap"><table class="vs-table">
         <thead><tr><th></th><th class="th-a">AGUASEGURO™ ClO₂</th><th class="th-c">Cloro / Pastillas</th></tr></thead>
         <tbody>
           <tr><td>Elimina bacterias</td><td class="tc-a"><span class="yes">✓</span></td><td class="tc-c"><span class="partial">Parcialmente</span></td></tr>
@@ -258,7 +283,7 @@
           <tr><td>Los microbios no desarrollan tolerancia</td><td class="tc-a"><span class="yes">✓</span></td><td class="tc-c"><span class="no">✗</span></td></tr>
           <tr><td>Potencia de oxidación 2.5× mayor</td><td class="tc-a"><span class="yes">✓</span></td><td class="tc-c"><span class="no">✗</span></td></tr>
         </tbody>
-      </table>
+      </table></div>
       <div class="vs-footnote">* Los trihalometanos (THMs) y ácidos haloacéticos (HAAs) son subproductos del cloro convencional clasificados como probables cancerígenos por la EPA y la OMS a exposición prolongada. AguaSeguro™ no genera estos subproductos.</div>
     </div>
     <div class="vs-box">
