@@ -47,3 +47,52 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// ── Testimonials carousel ─────────────────────────
+var testiCurrent = 0;
+var testiTotal = 5;
+var testiAuto;
+
+function goToSlide(n) {
+  testiCurrent = ((n % testiTotal) + testiTotal) % testiTotal;
+  var track = document.getElementById('testiTrack');
+  if (track) track.style.transform = 'translateX(-' + (testiCurrent * 100) + '%)';
+  var dots = document.querySelectorAll('.testi-dot');
+  dots.forEach(function(d, i) {
+    d.classList.toggle('active', i === testiCurrent);
+  });
+}
+
+function shiftSlide(dir) {
+  goToSlide(testiCurrent + dir);
+  resetAutoplay();
+}
+
+function resetAutoplay() {
+  clearInterval(testiAuto);
+  testiAuto = setInterval(function() { goToSlide(testiCurrent + 1); }, 5000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var track = document.getElementById('testiTrack');
+  if (!track) return;
+
+  // Autoplay
+  resetAutoplay();
+
+  // Touch/swipe support
+  var startX = 0;
+  track.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      shiftSlide(diff > 0 ? 1 : -1);
+    }
+  }, { passive: true });
+
+  // Pause on hover
+  track.addEventListener('mouseenter', function() { clearInterval(testiAuto); });
+  track.addEventListener('mouseleave', function() { resetAutoplay(); });
+});
