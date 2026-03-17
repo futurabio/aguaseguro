@@ -12,29 +12,11 @@ document.addEventListener('click', function(e) {
   if (nav && !nav.contains(e.target)) closeMenu();
 });
 
-// ── Testimonials carousel ─────────────────────────
-var testiCurrent = 0;
-var testiTotal = 5;
-var testiAuto;
-
-function goToSlide(n) {
-  testiCurrent = ((n % testiTotal) + testiTotal) % testiTotal;
-  var track = document.getElementById('testiTrack');
-  if (track) track.style.transform = 'translateX(-' + (testiCurrent * 100) + '%)';
-  document.querySelectorAll('.testi-dot').forEach(function(d, i) {
-    d.classList.toggle('active', i === testiCurrent);
-  });
-}
-
-function shiftSlide(dir) {
-  goToSlide(testiCurrent + dir);
-  resetAutoplay();
-}
-
-function resetAutoplay() {
-  clearInterval(testiAuto);
-  testiAuto = setInterval(function() { goToSlide(testiCurrent + 1); }, 5000);
-}
+// ── Scroll to top ─────────────────────────────────
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
 
 // ── Scroll reveal ─────────────────────────────────
 var observer = new IntersectionObserver(function(entries) {
@@ -47,19 +29,11 @@ var observer = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
-// ── Scroll to top button ──────────────────────────
-window.addEventListener('scroll', function() {
-  var btn = document.getElementById('scrollTop');
-  if (!btn) return;
-  btn.classList.toggle('visible', window.scrollY > 400);
-});
-
-// ── Init on DOM ready ─────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Scroll reveal
+  // Scroll reveal elements
   var revEls = document.querySelectorAll(
-    '.stat-card, .step3, .who-card, .case, .ben, .size-card, .store, .tl-item, .tech-badge, .pd-item, .ret-card, .cta-strip'
+    '.stat-card, .step3, .who-card, .case, .ben, .size-card, .store, .tl-item, .tech-badge, .pd-item, .ret-card, .cta-strip, .review-card'
   );
   revEls.forEach(function(el, i) {
     var rect = el.getBoundingClientRect();
@@ -75,30 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('details').forEach(function(d) {
     d.addEventListener('toggle', function() {
       var fi = d.querySelector('.fi');
-      if (fi) fi.textContent = d.open ? '\xd7' : '+';
+      if (fi) fi.textContent = d.open ? '×' : '+';
     });
   });
 
-  // Carousel init
-  var track = document.getElementById('testiTrack');
-  if (track) {
-    // Start autoplay
-    resetAutoplay();
-
-    // Touch swipe
-    var startX = 0;
-    track.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-    }, { passive: true });
-    track.addEventListener('touchend', function(e) {
-      var diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        shiftSlide(diff > 0 ? 1 : -1);
-      }
-    }, { passive: true });
-
-    // Pause on hover
-    track.addEventListener('mouseenter', function() { clearInterval(testiAuto); });
-    track.addEventListener('mouseleave', function() { resetAutoplay(); });
-  }
 });
