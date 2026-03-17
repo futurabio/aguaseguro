@@ -434,3 +434,7 @@ footer { background: #01090F; border-top: 1px solid rgba(0,196,180,.07); }
   .stat-num { font-size: 2.2rem; }
   .size-range { font-size: 1.2rem; }
 }
+
+/* ── MICROREACTOR IMAGE ───────────────────────────── */
+.microreactor-wrap { margin-bottom: 3.5rem; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 56px rgba(0,0,0,.5); border: 1px solid rgba(0,196,180,.2); max-width: 1000px; margin-left: auto; margin-right: auto; }
+.microreactor-img { width: 100%; height: auto; display: block; }
