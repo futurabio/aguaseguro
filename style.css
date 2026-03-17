@@ -84,7 +84,7 @@ nav {
 .hero-tag span, .hero-tag-sub { font-size: .78rem; color: rgba(255,255,255,.55); display: flex; align-items: center; gap: .3rem; flex-wrap: wrap; }
 
 /* ── TRUST BAR ────────────────────────────────────── */
-.trust { background: var(--navy-mid); border-top: 1px solid rgba(0,196,180,.08); border-bottom: 1px solid rgba(0,196,180,.08); padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.trust { background: var(--navy-mid); border-top: 1px solid rgba(0,196,180,.08); border-bottom: 1px solid rgba(0,196,180,.08); padding: 1.2rem 3rem; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .trust::-webkit-scrollbar { display: none; }
 .ti { display: flex; align-items: center; gap: 9px; padding: .4rem 1.75rem; border-right: 1px solid rgba(255,255,255,.07); flex-shrink: 0; }
 .ti:last-child { border-right: none; }
@@ -148,8 +148,8 @@ h2.lt { color: var(--white); }
 
 /* ── TESTIMONIALS CAROUSEL ────────────────────────── */
 .testi-track-wrap { position: relative; margin-top: 3rem; padding: 0 3rem; overflow: hidden; border-radius: 16px; }
-.testi-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); will-change: transform; }
-.testi-card { min-width: 100%; background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 2.75rem 3rem; box-sizing: border-box; box-shadow: 0 4px 24px rgba(4,30,58,.07); }
+.testi-track { display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1); will-change: transform; -webkit-overflow-scrolling: touch; }
+.testi-card { min-width: 100%; flex-shrink: 0; background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 2.75rem 3rem; box-sizing: border-box; box-shadow: 0 4px 24px rgba(4,30,58,.07); }
 .testi-stars { color: #F59E0B; font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 1.25rem; }
 .testi-quote { font-size: 1.15rem; color: var(--navy); line-height: 1.75; font-family: 'Lora', serif; font-style: italic; margin-bottom: 2rem; border-left: 3px solid var(--aqua); padding-left: 1.25rem; }
 .testi-meta { display: flex; align-items: center; gap: 1rem; }
@@ -452,7 +452,7 @@ img { max-width: 100%; height: auto; }
   .vs-table { font-size: .78rem; }
   .vs-table thead th { padding: .5rem .6rem; font-size: .72rem; }
   .vs-table tbody td { padding: .6rem .6rem; font-size: .78rem; }
-  .th-c, .tc-c { display: none; }
+  .th-c, .tc-c { display: none !important; }
   .vs-layout { gap: 1.5rem; }
   .vs-box { padding: 1.5rem; }
   .vs-box p { font-size: .82rem; }
@@ -476,9 +476,45 @@ img { max-width: 100%; height: auto; }
 
 /* Chrome Android overflow fix */
 html, body { overflow-x: hidden !important; width: 100% !important; max-width: 100% !important; }
-.hero, .trust, .sec, .cta-final, footer, nav { overflow-x: hidden; width: 100%; max-width: 100%; box-sizing: border-box; }
+.hero, .sec, .cta-final, footer, nav { overflow-x: hidden; width: 100%; max-width: 100%; box-sizing: border-box; }
 .hero-right { overflow: hidden; max-width: 100%; }
 .hero-img-wrap { max-width: 100%; overflow: hidden; }
 
 .pd-badge-usa { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .pd-badge-usa span { font-size: .68rem; font-weight: 400; color: var(--muted); }
+
+/* ── SCROLL TO TOP ────────────────────────────────── */
+.scroll-top {
+  position: fixed;
+  bottom: 90px;
+  right: 24px;
+  z-index: 998;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--navy-mid);
+  border: 1.5px solid rgba(0,196,180,.3);
+  color: var(--aqua);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.3);
+  transition: all .25s;
+  opacity: 0;
+  pointer-events: none;
+}
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.scroll-top:hover {
+  background: var(--aqua);
+  color: var(--navy);
+  transform: translateY(-3px);
+}
+@media (max-width: 640px) {
+  .scroll-top { bottom: 80px; right: 16px; width: 40px; height: 40px; font-size: 1rem; }
+}

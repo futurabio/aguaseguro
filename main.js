@@ -8,7 +8,7 @@ function closeMenu() {
   document.getElementById('hamburger').classList.remove('open');
 }
 document.addEventListener('click', function(e) {
-  var nav = document.getElementById('nav');
+  var nav = document.querySelector('nav');
   if (nav && !nav.contains(e.target)) closeMenu();
 });
 
@@ -95,4 +95,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // Pause on hover
   track.addEventListener('mouseenter', function() { clearInterval(testiAuto); });
   track.addEventListener('mouseleave', function() { resetAutoplay(); });
+});
+
+// ── Scroll to top button ──────────────────────────
+window.addEventListener('scroll', function() {
+  var btn = document.getElementById('scrollTop');
+  if (!btn) return;
+  if (window.scrollY > 400) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
 });
